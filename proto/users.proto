@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package users.grpc;
+
+
+service UsersService {
+    rpc GetUsers (Empty) returns (UsersResponse);
+    rpc GetUserById (UserByIdRequest) returns (UserByIdResponse);
+    rpc CreateUser (RegisterUserRequest) returns (RegisterUserResponse);
+    rpc UpdateUser (UpdateUserRequest) returns (UpdateUserResponse);
+    rpc DeleteUser (DeleteUserRequest) returns (DeleteUserResponse);
+}
+
+
+message Empty {}
+
+message UserByIdRequest {
+    int32 id = 1;
+}
+
+message UserByIdResponse {
+    int32 id = 1;
+    string username = 2;
+    int32 age = 3;
+    string created_at = 4;
+}
+
+message UserData {
+    int32 id = 1;
+    string username = 2;
+    int32 age = 3;
+    string created_at = 4;
+}
+
+message UsersResponse {
+    repeated UserData users = 1;
+}
+
+message RegisterUserRequest {
+    int32 id = 1;
+    string username = 2;
+    int32 age = 3;
+}
+
+message RegisterUserResponse {
+    int32 id = 1;
+}
+
+message DeleteUserRequest {
+    int32 id = 1;
+}
+
+message DeleteUserResponse {
+    bool status = 1;
+}
+
+message UpdateUserRequest {
+    int32 id = 1;
+    string username = 2;
+    int32 age = 3;
+}
+
+message UpdateUserResponse {
+    bool status = 1;
+}
